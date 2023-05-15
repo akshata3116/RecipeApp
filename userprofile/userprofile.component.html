@@ -1,0 +1,52 @@
+<app-navbar></app-navbar>
+
+
+    <div *ngFor="let u of user">
+            <div>
+              <h5 class="card-title">UserId:{{ u.userid}}</h5>
+              <h5 class="card-title">UserName:{{ u.username }}</h5>
+              <p class="card-text">Email:{{ u.email }}</p>
+            </div> 
+            <div *ngFor="let r of recipe">
+              <div>
+                <h5 class="card-title">RecipeName:{{ r.name }}</h5>
+              </div>
+              <img src="{{ r.image }}" alt="Recipe Image" class="card-img-top" />
+      <div>
+                <button (click)="editRecipe(rec)" class="btn btn-success">
+                    Update
+                  </button>
+                  <button (click)="delbyid(r.recipeid)" class="btn btn-danger">
+                    Delete
+                  </button>     
+       </div><br><br>
+  </div>
+ </div>  
+
+ 
+   
+<form *ngIf="recupd" (submit)="updateRecipe()" style="width: 50vw; margin: auto; margin-bottom: 10px; font-size: 14px;">
+    <h2 style="text-align: center;">Update Recipe</h2>
+    <label>RecipeId</label>
+  <input [(ngModel)]="recupd.recipeid" name="recipeid" type="text" class="form-control"><br>
+
+  <label>RecipeName</label>
+  <input [(ngModel)]="recupd.name" name="name" type="text" class="form-control"><br>
+  
+  <label>Ingredients</label>
+  <input [(ngModel)]="recupd.ingredients" name="ingredients" type="text" style="height:200px" class="form-control"><br>
+  
+  <label>Description</label>
+  <input [(ngModel)]="recupd.description" name="description" type="text" style="height:200px" class="form-control"><br>
+ 
+  <label>preparationTime</label>
+  <input [(ngModel)]="rec.preparationtime" name="preparationtime" type="text" class="form-control"><br>
+
+  <label>Images</label>
+  <input [(ngModel)]="recupd.images" name="images" type="file" class="form-control" onchange="console.log(event.target.files)"><br>
+
+  <label>UserId</label>
+  <input [(ngModel)]="recupd.userid" name="userid" type="text" class="form-control"><br>
+
+    <button type="submit" class="btn btn-primary btn-md" style="padding: 8px;">Update Recipe</button>
+  </form>
